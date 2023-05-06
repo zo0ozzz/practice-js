@@ -136,24 +136,27 @@ table {
   display: block;
 }
 
-.start {
+/* .start {
   transform: translate(0px, 0px);
-  transition: transform 3s;
+  transition: all 1s;
 }
 
 .end {
   transform: translate(-100px, 0px);
-  /* transition: transform 1s; */
-}
+} */
 
 .container.top {
   width: 100px;
   height: 50px;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
-.container {
+.transition {
+  transition: all 1s;
+}
+
+.container.second {
   position: relative;
   display: flex;
   width: 300px;
