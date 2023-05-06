@@ -1,14 +1,12 @@
-document
-  .querySelector("#submit")
-  .addEventListener("click", submitButtonHandler);
+// const button1 = document.querySelector('#button1');
 
-function submitButtonHandler(e) {
-  e.preventDefault();
-  const inputValue = document.querySelector(".one").value;
-  console.log(inputValue);
-  if (!/\S+@\S+\.\S+/.test(inputValue)) {
-    console.log(/\S+@\S+\.\S/.test(inputValue));
-    alert("이메일 형식이 올바르지 않습니다.");
-    return;
-  }
-}
+// button1.addEventListener('click', button1Handler);
+
+// function button1Handler() {
+
+// }
+
+const one = document.querySelector("#one");
+one.addEventListener("click", oneHandler);
+
+function oneHandler() {}
