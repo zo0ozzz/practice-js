@@ -1,5 +1,6 @@
-for (var i = 0; i < 5; i++) {
-  setTimeout(function () {
-    console.log(i);
-  }, i * 1000);
-}
+const ddd = {
+  a: 1,
+  b: 2,
+};
+
+console.log({ ...ddd });
