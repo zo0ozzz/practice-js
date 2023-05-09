@@ -1,7 +1,15 @@
-class ddd extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `<p>ddddddddddd</p>`;
-  }
-}
+const div = document.querySelector("div");
 
-customElements.define("custom-c", ddd);
+console.log(div);
+
+// div.innerHTML = "<input>";
+
+const ddd = document.createElement("div");
+ddd.textContent = "dddddd";
+
+const eee = document.createElement("div");
+eee.textContent = "dddddd";
+
+div.insertAdjacentHTML("beforeend", "<d>two</d");
+
+// div.append(ddd, eee);
