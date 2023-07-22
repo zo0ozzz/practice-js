@@ -1,7 +1,28 @@
 const toolbarOptions = {
-  // container: true,
+  container: [
+    ["link", "bold", "italic", "underline", "strike"], // toggled buttons
+    ["blockquote", "code-block"],
+
+    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ script: "sub" }, { script: "super" }], // superscript/subscript
+    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+    [{ direction: "rtl" }], // text direction
+
+    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ font: [] }],
+    [{ align: [] }],
+
+    ["clean"], // remove formatting button
+    ["custom"],
+  ],
   handlers: {
-    ccc: function (value) {
+    // handlers의 value 값으로 해당 기본 동작을 덮어쓴다.
+    link: function (value) {
+      // link라는 기본 동작을 다른 함수로 대체한다.
       if (value) {
         alert(value);
         const href = prompt("Enter the URL");
@@ -11,38 +32,21 @@ const toolbarOptions = {
         this.quill.format("link", false);
       }
     },
-    link: function (value) {
-      if (value) {
-        alert(value);
-        const href = prompt("Enter the URL");
-        this.quill.format("link", href);
-      } else {
-        alert(value);
-        this.quill.format("link", false);
-      }
+    custom: function () {
+      // this.quill.deleteText(0, 1, "api");
+      // 인덱스0부터 1길이만큼 삭제.
+      // console.log("test: ", this.quill.getText(0, 10));
+      // console.log("test: ", this.quill.format("font", "serif"));
+      this.quill.setSelection(1, 5);
     },
   },
 };
 
-// const toolbarOptions = [
-//   ["bold", "italic", "underline", "strike"], // toggled buttons
-//   ["blockquote", "code-block"],
-
-//   [{ header: 1 }, { header: 2 }], // custom button values
-//   [{ list: "ordered" }, { list: "bullet" }],
-//   [{ script: "sub" }, { script: "super" }], // superscript/subscript
-//   [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-//   [{ direction: "rtl" }], // text direction
-
-//   [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-//   [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-//   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-//   [{ font: [] }],
-//   [{ align: [] }],
-
-//   ["clean"], // remove formatting button
-// ];
+// 핸들러는 이런 식으로 추가해줄 수도 있음. getEditor 같은 걸 써야겠지?
+// const customButton = document.querySelector("#custom-button");
+// customButton.addEventListener("click", function () {
+//   console.log("click");
+// });
 
 // const toolbarOptions = [
 //   { header: [3, 4] },
@@ -68,6 +72,9 @@ const options = {
   // passing true = passing log
   // passing false = disable al messages
   modules: {
+    history: {
+      delay: 100,
+    },
     // toolbar: toolbarOptions,
     toolbar: toolbarOptions,
     // container: "#toolbar",
@@ -96,24 +103,13 @@ const options = {
       - container: '#editor'
       : 툴바가 주입될 요소 설정
     */
-    history: {
-      delay: 2500,
-      userOnly: true,
-    },
-    syntax: true,
+    // history: {
+    //   delay: 2500,
+    //   userOnly: true,
+    // },
+    // syntax: true,
     // - 기본으로 활성화되어 있음.
   },
-  formats: [
-    "bold",
-    "italic",
-    "underline",
-    "code",
-    "header",
-    "font",
-    "link",
-    "ddd",
-  ],
-
   // formats: ["bold", "italic", "underline", "code", "header", "font"],
   /*
   formats:
@@ -131,17 +127,9 @@ const options = {
           formtats: [],
             - 어떤 버튼을 눌러도 변화 없음.
   */
-  placeholder: "하이루",
+  placeholder: "뭐예요",
   // readOnly: true,
   theme: "snow",
 };
 
 const quill = new Quill("#editor", options);
-
-const customButton = document.querySelector("#custom-button");
-customButton.addEventListener("click", function () {
-  console.log("click");
-});
-
-// const target = document.querySelector('#editor');
-// const quill = new Quill(target, option)
