@@ -1,5 +1,6 @@
 const toolbarOptions = {
   container: [
+    ["image"],
     ["link", "bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
 
@@ -33,11 +34,23 @@ const toolbarOptions = {
       }
     },
     custom: function () {
+      const selection = this.quill.getSelection();
+      const { index, length } = selection;
+
+      // const content = this.quill.getText(index, length);
+      // this.quill.formatText(index, length, "custom-tag", true);
+
+      const delta = this.quill.getContents(index, length);
+      const url = delta.ops[0].insert.image;
+
+      this.quill.insertEmbed(0, "image", url, "class", "ddd");
+
+      // console.log("콘솔: ", native);
+      // const url = this.quill.getSelection
       // this.quill.deleteText(0, 1, "api");
       // 인덱스0부터 1길이만큼 삭제.
       // console.log("test: ", this.quill.getText(0, 10));
       // console.log("test: ", this.quill.format("font", "serif"));
-      this.quill.setSelection(1, 5);
     },
   },
 };
@@ -130,6 +143,15 @@ const options = {
   placeholder: "뭐예요",
   // readOnly: true,
   theme: "snow",
+  syntax: true,
 };
 
 const quill = new Quill("#editor", options);
+
+const editor = document.querySelector("#editor");
+
+// editor.addEventListener("click", function (e) {
+//   if (e.target.tagName === "IMG") {
+//     e.target.classList.add("ddd");
+//   }
+// });
