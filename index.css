@@ -41,3 +41,13 @@ button:active,
 button:focus {
   outline: none;
 }
+
+#editor-container hr {
+  border: none;
+  color: #111;
+  letter-spacing: 1em;
+  text-align: center;
+}
+#editor-container hr:before {
+  content: "...";
+}
